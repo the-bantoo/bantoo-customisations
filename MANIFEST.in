@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include bantoo_customisations *.css
+recursive-include bantoo_customisations *.csv
+recursive-include bantoo_customisations *.html
+recursive-include bantoo_customisations *.ico
+recursive-include bantoo_customisations *.js
+recursive-include bantoo_customisations *.json
+recursive-include bantoo_customisations *.md
+recursive-include bantoo_customisations *.png
+recursive-include bantoo_customisations *.py
+recursive-include bantoo_customisations *.svg
+recursive-include bantoo_customisations *.txt
+recursive-exclude bantoo_customisations *.pyc

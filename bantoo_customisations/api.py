@@ -4,12 +4,13 @@ from frappe import _
 from frappe import utils
 from frappe.utils import getdate, nowdate
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def submit_appointment_request(args):
+    frappe.set_user('Administrator')
     values = json.loads(args)
     
     date = values['date']
-    time = values['time'] #.time().strftime("%H:%M")
+    time = values['time']
     
     if date and getdate(date) < getdate(nowdate()):
         frappe.throw(_("Date cannot be in the past"))
@@ -30,4 +31,3 @@ def submit_appointment_request(args):
         ignore_permissions=True, # ignore write permissions during insert
         ignore_mandatory=True # insert even if mandatory fields are not set
     )
-    

@@ -16,6 +16,7 @@ def submit_appointment_request(args):
         frappe.throw(_("Date cannot be in the past"))
     
     lead = frappe.new_doc("Lead")
+    lead.notes = "Package: " + (str(values['price_package']) or "Not set")
     lead.lead_name = values['first_name'] + " " + values['last_name']
     lead.status = "Open"
     lead.source = "Website"

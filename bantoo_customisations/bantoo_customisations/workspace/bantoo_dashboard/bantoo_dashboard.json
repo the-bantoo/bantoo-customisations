@@ -1,0 +1,51 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "creation": "2021-08-13 16:45:41.481088",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends_another_page": 0,
+ "hide_custom": 0,
+ "icon": "",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "Bantoo Dashboard",
+ "links": [],
+ "modified": "2021-08-13 16:47:51.337024",
+ "modified_by": "adam@thebantoo.com",
+ "module": "Bantoo Customisations",
+ "name": "Bantoo Dashboard",
+ "owner": "adam@thebantoo.com",
+ "pin_to_bottom": 0,
+ "pin_to_top": 1,
+ "shortcuts": [
+  {
+   "doc_view": "Dashboard",
+   "label": "Accounts",
+   "link_to": "Accounts",
+   "type": "Dashboard"
+  },
+  {
+   "doc_view": "Dashboard",
+   "label": "CRM",
+   "link_to": "CRM",
+   "type": "Dashboard"
+  },
+  {
+   "doc_view": "Dashboard",
+   "label": "Selling",
+   "link_to": "Selling",
+   "type": "Dashboard"
+  },
+  {
+   "doc_view": "Dashboard",
+   "label": "Website",
+   "link_to": "Website",
+   "type": "Dashboard"
+  }
+ ],
+ "shortcuts_label": "Dashboards"
+}

@@ -4,6 +4,33 @@ from frappe import _
 from frappe import utils
 from frappe.utils import getdate, nowdate
 
+from urllib.parse import urlencode
+from urllib.request import urlopen
+
+@frappe.whitelist(allow_guest=True)
+def verify_captcha(token):
+    URL = 'https://www.google.com/recaptcha/api/siteverify'
+    private_key = '6Lc2N3MgAAAAAK88fVJ4CeWnSe8oMXnoO__0vCFq'
+    params = urlencode({
+        'secret': private_key,
+        'response': token,
+    })
+
+    # print params
+    data = urlopen(URL, params.encode('utf-8')).read()
+    result = json.loads(data)
+    success = result.get('success', None)
+
+    frappe.errprint(str(result))
+
+    if success == True:
+        frappe.errprint('reCaptcha passed')
+        return True
+    else:
+        frappe.errprint('reCaptcha failed')
+        return False
+    
+
 @frappe.whitelist(allow_guest=True)
 def submit_appointment_request(args):
     frappe.set_user('Administrator')

@@ -21,11 +21,11 @@ def verify_captcha(token):
     result = json.loads(data)
     success = result.get('success', None)
 
-    frappe.errprint(str(result))
+    # frappe.errprint( float(result.get('score', 1)) )
 
     if success == True:
-        frappe.errprint('reCaptcha passed')
-        return True
+        # frappe.errprint('reCaptcha passed')
+        return float( result.get('score', 1) )
     else:
         frappe.errprint('reCaptcha failed')
         return False

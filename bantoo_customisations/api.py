@@ -8,7 +8,7 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 
 @frappe.whitelist(allow_guest=True)
-def verify_captcha(token):
+def verify_captcha(token, email, message):
     URL = 'https://www.google.com/recaptcha/api/siteverify'
     private_key = '6Lc2N3MgAAAAAK88fVJ4CeWnSe8oMXnoO__0vCFq'
     params = urlencode({
@@ -27,9 +27,23 @@ def verify_captcha(token):
         # frappe.errprint('reCaptcha passed')
         return float( result.get('score', 1) )
     else:
+        desc = message +"<br><br><br>Response Object: "+ str(result)
         frappe.errprint('reCaptcha failed')
+        create_issue(email, 'reCaptcha failed on Homepage', desc)
+        
         return False
+
+def create_issue(email, subject, description):
+    issue = frappe.new_doc("Issue")
+    issue.raised_by = email
+    issue.status = "Open"
+    issue.subject = subject
+    issue.description = description
     
+    return issue.insert(
+        ignore_permissions=True, # ignore write permissions during insert
+        ignore_mandatory=True # insert even if mandatory fields are not set
+    )
 
 @frappe.whitelist(allow_guest=True)
 def submit_appointment_request(args):
